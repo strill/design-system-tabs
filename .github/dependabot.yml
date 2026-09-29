@@ -7,3 +7,4 @@ updates:
     default-days: 7
   directories:
   - '*'
+  open-pull-requests-limit: 0
