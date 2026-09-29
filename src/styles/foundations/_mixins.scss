@@ -1,0 +1,49 @@
+@use "tokens" as *;
+
+// BREAKPOINTS.
+// =============================================================================
+
+// Mobile first: styles above breakpoint-mobile.
+@mixin media-above-mobile {
+  @media (width > #{$breakpoint-mobile}) {
+    @content;
+  }
+}
+
+// TYPOGRAPHY.
+// Styles from design file.
+// =============================================================================
+
+@mixin typography-body-m {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-m);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height);
+}
+
+@mixin typography-body-s {
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-s);
+  font-weight: var(--ds-font-weight-bold);
+  line-height: var(--ds-line-height);
+}
+
+// OTHERS.
+// =============================================================================
+
+// Keyboard focus only.
+@mixin focus-ring($offset: 2px) {
+  &:focus-visible {
+    outline: 2px solid var(--ds-color-inverse);
+    outline-offset: $offset;
+  }
+}
+
+// No reduced motion only.
+@mixin transition($properties...) {
+  @media (prefers-reduced-motion: no-preference) {
+    transition-property: $properties;
+    transition-duration: var(--ds-motion-duration-fast);
+    transition-timing-function: var(--ds-motion-easing);
+  }
+}

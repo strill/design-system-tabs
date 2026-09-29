@@ -1,0 +1,71 @@
+@use "functions" as *;
+
+// DESIGN TOKENS.
+// From the Figma file.
+// Naming: --ds-{category}-{name}-{state}; primitives: $-{hue}-{step}, private.
+// =============================================================================
+
+// PRIMITIVES.
+// Palette used by the semantic tokens.
+// =============================================================================
+$-white: #fff;
+$-grey-50: #f6f6fa;
+$-grey-100: #f1f1f7;
+$-grey-200: #d3d3dc;
+$-grey-300: #c4c5cf;
+$-grey-600: #585d71;
+$-grey-800: #343a4e;
+$-grey-900: #1b2134;
+$-green-100: #b1ffc7;
+$-red-100: #ffbfb1;
+
+// BREAKPOINTS.
+// Sass variable: media queries can't read var().
+// =============================================================================
+$breakpoint-mobile: rem(768px);
+
+// CUSTOM PROPERTIES.
+// Output once, on :root, by style.scss.
+// =============================================================================
+@mixin custom-properties {
+  // Color.
+  --ds-color-inverse-active: #{$-grey-600};
+  --ds-color-inverse-hover: #{$-grey-800};
+  --ds-color-inverse: #{$-grey-900};
+  --ds-color-on-inverse: #{$-white};
+  --ds-color-on-neutral: #{$-grey-900};
+  --ds-color-outline-hover: #{$-grey-300};
+  --ds-color-outline: #{$-grey-200};
+  --ds-color-surface-active: #{$-grey-100};
+  --ds-color-surface-high: #{$-grey-100};
+  --ds-color-surface-hover: #{$-grey-50};
+  --ds-color-surface-negative: #{$-red-100};
+  --ds-color-surface-positive: #{$-green-100};
+
+  // Spacing.
+  --ds-spacing-0: #{rem(0px)};
+  --ds-spacing-4xs: #{rem(2px)};
+  --ds-spacing-3xs: #{rem(4px)};
+  --ds-spacing-2xs: #{rem(8px)};
+  --ds-spacing-xs: #{rem(12px)};
+  --ds-spacing-s: #{rem(16px)};
+  --ds-spacing-m: #{rem(20px)};
+  --ds-spacing-l: #{rem(24px)};
+  --ds-spacing-xl: #{rem(32px)};
+  --ds-spacing-2xl: #{rem(40px)};
+
+  // Radius.
+  --ds-radius-2xs: #{rem(4px)};
+  --ds-radius-full: 9999px;
+
+  // Typography.
+  --ds-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --ds-font-size-m: #{rem(14px)};
+  --ds-font-size-s: #{rem(12px)};
+  --ds-font-weight-bold: 700;
+  --ds-line-height: 1.5;
+
+  // Motion.
+  --ds-motion-duration-fast: 150ms;
+  --ds-motion-easing: cubic-bezier(0.3, 0, 0, 1);
+}

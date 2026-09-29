@@ -1,0 +1,19 @@
+@use "foundations" as ds;
+
+:root {
+  @include ds.custom-properties;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  color: var(--ds-color-on-neutral);
+  font-family: var(--ds-font-family);
+  font-size: var(--ds-font-size-m);
+  line-height: var(--ds-line-height);
+}
