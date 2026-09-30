@@ -1,0 +1,25 @@
+@use "foundations" as ds;
+
+.badge {
+  align-items: center;
+  background-color: var(--ds-color-surface-high);
+  border-radius: var(--ds-radius-xs);
+  color: var(--ds-color-on-neutral);
+  display: inline-flex;
+  padding: var(--ds-spacing-4xs) var(--ds-spacing-3xs);
+  white-space: nowrap;
+  @include ds.typography-body-s;
+
+  @include ds.media-above-mobile {
+    border-radius: var(--ds-radius-s);
+    padding: var(--ds-spacing-3xs) var(--ds-spacing-2xs);
+  }
+
+  &[data-variant="positive"] {
+    background-color: var(--ds-color-surface-positive);
+  }
+
+  &[data-variant="negative"] {
+    background-color: var(--ds-color-surface-negative);
+  }
+}
