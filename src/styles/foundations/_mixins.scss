@@ -39,11 +39,9 @@
   }
 }
 
-// No reduced motion only.
-@mixin transition($properties...) {
+// Reduced motion: no-preference only.
+@mixin motion-safe {
   @media (prefers-reduced-motion: no-preference) {
-    transition-property: $properties;
-    transition-duration: var(--ds-motion-duration-fast);
-    transition-timing-function: var(--ds-motion-easing);
+    @content;
   }
 }

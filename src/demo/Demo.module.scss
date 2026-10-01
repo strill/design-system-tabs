@@ -1,0 +1,45 @@
+@use "foundations" as ds;
+
+$color-placeholder: #d9d9d9;
+
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--ds-spacing-xs));
+  }
+}
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  margin-inline: auto;
+  max-inline-size: ds.rem(720px);
+  min-block-size: 100dvh;
+  padding: var(--ds-spacing-2xl) var(--ds-spacing-l);
+}
+
+.list {
+  display: grid;
+  gap: var(--ds-spacing-xs);
+}
+
+.grid {
+  display: grid;
+  gap: var(--ds-spacing-xs);
+  grid-template-columns: repeat(2, 1fr);
+
+  .block {
+    aspect-ratio: 1;
+  }
+}
+
+.block {
+  background-color: $color-placeholder;
+  border-radius: var(--ds-radius-s);
+  min-block-size: ds.rem(56px);
+
+  @include ds.motion-safe {
+    animation: enter var(--ds-motion-duration-slow) var(--ds-motion-easing) backwards;
+    animation-delay: calc(var(--index) * 60ms);
+  }
+}

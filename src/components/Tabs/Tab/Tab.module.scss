@@ -15,8 +15,12 @@
   position: relative;
   white-space: nowrap;
   @include ds.typography-body-m;
-  @include ds.transition(background-color, border-color, color);
   @include ds.focus-ring;
+  @include ds.motion-safe {
+    transition-duration: var(--ds-motion-duration-fast);
+    transition-property: background-color, border-color, color;
+    transition-timing-function: var(--ds-motion-easing);
+  }
 
   @include ds.media-above-mobile {
     min-block-size: ds.rem(50px);
@@ -67,7 +71,11 @@
       height: var(--ds-border-width-l);
       inset-inline: 0;
       position: absolute;
-      @include ds.transition(background-color);
+      @include ds.motion-safe {
+        transition-duration: var(--ds-motion-duration-fast);
+        transition-property: background-color;
+        transition-timing-function: var(--ds-motion-easing);
+      }
     }
 
     &:hover::after,
