@@ -1,0 +1,22 @@
+import { Meta, Title, Description, Primary, Controls, Stories } from "@storybook/addon-docs/blocks";
+import * as TabStories from "./Tab.stories";
+
+<Meta of={TabStories} />
+
+<Title />
+<Description />
+<Primary />
+
+## Props
+
+Other props, such as `data-*` attributes, are forwarded to the `button`.
+
+Inside `Tabs`, `role`, `id`, `aria-selected` and `aria-controls` are set by `Tabs`.
+
+An `onClick` runs before the tab is selected.
+
+<Controls />
+
+## Examples
+
+<Stories title="" />

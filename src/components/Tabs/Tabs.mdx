@@ -1,0 +1,22 @@
+import { Meta, Title, Description, Primary, Controls, Stories } from "@storybook/addon-docs/blocks";
+import * as TabsStories from "./Tabs.stories";
+
+<Meta of={TabsStories} />
+
+<Title />
+<Description />
+<Primary />
+
+## Props
+
+Other props, such as `className` or `data-*` attributes, are forwarded to the root element.
+
+`id` is also the base of the ids generated for tabs and panels.
+
+`Tabs.Tab` must be a direct child: any other child is ignored.
+
+<Controls />
+
+## Examples
+
+<Stories title="" />

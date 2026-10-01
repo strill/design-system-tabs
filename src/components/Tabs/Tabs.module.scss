@@ -1,0 +1,26 @@
+@use "foundations" as ds;
+
+.list {
+  display: flex;
+
+  &[data-variant="underline"] {
+    gap: var(--ds-spacing-l);
+
+    @include ds.media-above-mobile {
+      gap: var(--ds-spacing-xl);
+    }
+  }
+
+  &[data-variant="pill"] {
+    gap: var(--ds-spacing-2xs);
+
+    @include ds.media-above-mobile {
+      gap: var(--ds-spacing-xs);
+    }
+  }
+}
+
+.panel {
+  padding-top: var(--ds-spacing-xl);
+  @include ds.focus-ring;
+}

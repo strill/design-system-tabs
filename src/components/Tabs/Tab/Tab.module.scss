@@ -1,0 +1,81 @@
+@use "foundations" as ds;
+
+.tab {
+  background: none;
+  border: 0;
+  color: var(--ds-color-on-neutral);
+  cursor: pointer;
+  flex-shrink: 0;
+  margin: 0;
+  min-block-size: ds.rem(42px);
+  padding: 0;
+  position: relative;
+  white-space: nowrap;
+  @include ds.typography-body-m;
+  @include ds.transition(background-color, border-color, color);
+  @include ds.focus-ring;
+
+  @include ds.media-above-mobile {
+    min-block-size: ds.rem(50px);
+  }
+
+  &[data-variant="pill"] {
+    border: var(--ds-border-width-s) solid var(--ds-color-outline);
+    border-radius: var(--ds-radius-full);
+    padding-inline: var(--ds-spacing-xs);
+
+    @include ds.media-above-mobile {
+      padding-inline: var(--ds-spacing-s);
+    }
+
+    &:hover {
+      background-color: var(--ds-color-surface-hover);
+      border-color: var(--ds-color-outline-hover);
+    }
+
+    &:active {
+      background-color: var(--ds-color-surface-active);
+    }
+
+    &[aria-selected="true"] {
+      background-color: var(--ds-color-inverse);
+      border-color: transparent;
+      color: var(--ds-color-on-inverse);
+
+      &:hover {
+        background-color: var(--ds-color-inverse-hover);
+      }
+
+      &:active {
+        background-color: var(--ds-color-inverse-active);
+      }
+    }
+  }
+
+  &[data-variant="underline"] {
+    // Compensates the outline offset so the focus-ring keeps radius-2xs.
+    border-radius: calc(var(--ds-radius-2xs) - var(--ds-spacing-4xs));
+
+    &::after {
+      background-color: transparent;
+      border-radius: var(--ds-radius-full);
+      bottom: 0;
+      content: "";
+      height: var(--ds-border-width-l);
+      left: 0;
+      position: absolute;
+      right: 0;
+      width: 100%;
+      @include ds.transition(background-color);
+    }
+
+    &:hover::after,
+    &:focus-visible::after {
+      background-color: var(--ds-color-outline-hover);
+    }
+
+    &[aria-selected="true"]::after {
+      background-color: var(--ds-color-inverse);
+    }
+  }
+}

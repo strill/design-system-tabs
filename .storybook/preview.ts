@@ -8,6 +8,15 @@ const preview: Preview = {
         color: /(background|color)$/i,
         date: /Date$/i,
       },
+      sort: "alpha",
+    },
+    docs: {
+      controls: { sort: "alpha" },
+    },
+    options: {
+      storySort: {
+        order: ["Components", ["Badge", "Tabs", "Tab"]],
+      },
     },
     viewport: {
       options: {
