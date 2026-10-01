@@ -2,6 +2,11 @@
 
 .list {
   display: flex;
+  margin: calc(var(--ds-spacing-3xs) * -1);
+  overflow-x: auto;
+  padding: var(--ds-spacing-3xs);
+  scroll-padding-inline: var(--ds-spacing-s);
+  scrollbar-width: none;
 
   &[data-variant="underline"] {
     gap: var(--ds-spacing-l);

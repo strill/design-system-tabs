@@ -45,7 +45,10 @@ export function Tabs({
 
   function selectTab(index: number) {
     setSelectedIndex(index);
-    document.getElementById(tabId(index))?.focus();
+    const tab = document.getElementById(tabId(index));
+    // focus() alone leaves a partly hidden tab cut off.
+    tab?.focus({ preventScroll: true });
+    tab?.scrollIntoView({ block: "nearest", inline: "nearest" });
   }
 
   function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {

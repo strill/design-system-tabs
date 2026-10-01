@@ -197,6 +197,24 @@ describe("Tabs", () => {
     });
   });
 
+  describe("scrolling", () => {
+    it("scrolls the selected tab fully into view", async () => {
+      const user = userEvent.setup();
+      renderTabs();
+      await user.click(getTab("Emails"));
+
+      await user.keyboard("{ArrowRight}");
+
+      expect(Element.prototype.scrollIntoView).toHaveBeenLastCalledWith({
+        block: "nearest",
+        inline: "nearest",
+      });
+      expect(vi.mocked(Element.prototype.scrollIntoView).mock.contexts.at(-1)).toBe(
+        getTab("Files"),
+      );
+    });
+  });
+
   describe("click handlers", () => {
     it("calls the onClick of a Tabs.Tab and still selects it", async () => {
       const user = userEvent.setup();
