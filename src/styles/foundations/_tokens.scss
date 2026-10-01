@@ -60,6 +60,11 @@ $breakpoint-mobile: rem(768px);
   --ds-radius-s: #{rem(12px)};
   --ds-radius-full: 9999px;
 
+  // Border width.
+  --ds-border-width-s: #{rem(1px)};
+  --ds-border-width-m: #{rem(2px)};
+  --ds-border-width-l: #{rem(3px)};
+
   // Typography.
   --ds-font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --ds-font-size-m: #{rem(14px)};
