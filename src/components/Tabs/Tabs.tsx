@@ -56,12 +56,15 @@ export function Tabs({
     if (event.altKey || event.ctrlKey || event.metaKey) return;
 
     const last = tabs.length - 1;
+    const isRtl = getComputedStyle(event.currentTarget).direction === "rtl";
+    const previousKey = isRtl ? "ArrowRight" : "ArrowLeft";
+    const nextKey = isRtl ? "ArrowLeft" : "ArrowRight";
 
     switch (event.key) {
-      case "ArrowLeft":
+      case previousKey:
         selectTab(activeIndex === 0 ? last : activeIndex - 1);
         break;
-      case "ArrowRight":
+      case nextKey:
         selectTab(activeIndex === last ? 0 : activeIndex + 1);
         break;
       case "Home":
