@@ -10,6 +10,7 @@ const meta = {
   },
   argTypes: {
     "aria-selected": { control: "boolean", description: "Tab selected state. Set by `Tabs`." },
+    badge: { control: "object" },
     children: { control: false },
     className: { control: "text", description: "Extra CSS classes." },
   },
@@ -32,10 +33,18 @@ export const UnderlineSelected: Story = {
   args: { variant: "underline", "aria-selected": true },
 };
 
+export const UnderlineWithBadge: Story = {
+  args: { variant: "underline", badge: { label: "Warning", variant: "negative" } },
+};
+
 export const Pill: Story = {
   args: { variant: "pill" },
 };
 
 export const PillSelected: Story = {
   args: { variant: "pill", "aria-selected": true },
+};
+
+export const PillWithBadge: Story = {
+  args: { variant: "pill", badge: { label: "Warning", variant: "negative" } },
 };

@@ -1,11 +1,14 @@
 @use "foundations" as ds;
 
 .tab {
+  align-items: center;
   background: none;
   border: 0;
   color: var(--ds-color-on-neutral);
   cursor: pointer;
+  display: inline-flex;
   flex-shrink: 0;
+  gap: var(--ds-spacing-2xs);
   margin: 0;
   min-block-size: ds.rem(42px);
   padding: 0;

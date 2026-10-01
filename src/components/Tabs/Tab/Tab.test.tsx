@@ -20,6 +20,20 @@ describe("Tab", () => {
     expect(screen.getByRole("button", { name: "Files" })).toHaveAttribute("data-variant", "pill");
   });
 
+  describe("badge", () => {
+    it("includes the badge text in the tab name", () => {
+      render(<Tab label="Files" badge={{ label: "Warning" }} />);
+
+      expect(screen.getByRole("button")).toHaveAccessibleName(/Files.*Warning/);
+    });
+
+    it("passes the badge variant", () => {
+      render(<Tab label="Files" badge={{ label: "Warning", variant: "negative" }} />);
+
+      expect(screen.getByText("Warning")).toHaveAttribute("data-variant", "negative");
+    });
+  });
+
   it("does not render the content of its panel", () => {
     render(<Tab label="Files">Files content</Tab>);
 

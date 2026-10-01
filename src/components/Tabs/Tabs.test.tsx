@@ -249,5 +249,20 @@ describe("Tabs", () => {
         await expectNoAxeViolations(container);
       },
     );
+
+    it("has no detectable violations with badges", async () => {
+      const { container } = render(
+        <Tabs aria-label="Sections">
+          <Tabs.Tab label="Emails" badge={{ label: "Warning", variant: "negative" }}>
+            Emails content
+          </Tabs.Tab>
+          <Tabs.Tab label="Files" badge={{ label: "New", variant: "positive" }}>
+            Files content
+          </Tabs.Tab>
+        </Tabs>,
+      );
+
+      await expectNoAxeViolations(container);
+    });
   });
 });
