@@ -126,6 +126,77 @@ describe("Tabs", () => {
     });
   });
 
+  describe("removed tabs", () => {
+    it("falls back to the last tab when the selected one is removed", async () => {
+      const user = userEvent.setup();
+      const { rerender } = renderTabs();
+      await user.click(getTab("Edits"));
+
+      rerender(
+        <Tabs aria-label="Sections">
+          <Tabs.Tab label="Emails">Emails content</Tabs.Tab>
+          <Tabs.Tab label="Files">Files content</Tabs.Tab>
+        </Tabs>,
+      );
+
+      expectSelected("Files");
+      expect(getTab("Files")).toHaveAttribute("tabindex", "0");
+    });
+  });
+
+  describe("keyboard", () => {
+    it("keeps only the selected tab in the tab order", async () => {
+      const user = userEvent.setup();
+      renderTabs();
+
+      expect(screen.getAllByRole("tab").map((tab) => tab.tabIndex)).toEqual([0, -1, -1]);
+
+      await user.click(getTab("Edits"));
+
+      expect(screen.getAllByRole("tab").map((tab) => tab.tabIndex)).toEqual([-1, -1, 0]);
+    });
+
+    it("moves from the selected tab to its panel with Tab", async () => {
+      const user = userEvent.setup();
+      renderTabs();
+
+      await user.tab();
+      expect(getTab("Emails")).toHaveFocus();
+
+      await user.tab();
+      expect(screen.getByRole("tabpanel", { name: "Emails" })).toHaveFocus();
+    });
+
+    it.each([
+      ["ArrowRight", "Emails", "Files"],
+      ["ArrowRight", "Edits", "Emails"],
+      ["ArrowLeft", "Files", "Emails"],
+      ["ArrowLeft", "Emails", "Edits"],
+      ["Home", "Edits", "Emails"],
+      ["End", "Emails", "Edits"],
+    ])("%s from %s focuses and selects %s", async (key, from, to) => {
+      const user = userEvent.setup();
+      renderTabs();
+      await user.click(getTab(from));
+
+      await user.keyboard(`{${key}}`);
+
+      expect(getTab(to)).toHaveFocus();
+      expectSelected(to);
+    });
+
+    it("ignores other keys and browser shortcuts", async () => {
+      const user = userEvent.setup();
+      renderTabs();
+      await user.click(getTab("Files"));
+
+      await user.keyboard("{ArrowDown}{Alt>}{ArrowRight}{/Alt}");
+
+      expect(getTab("Files")).toHaveFocus();
+      expectSelected("Files");
+    });
+  });
+
   describe("click handlers", () => {
     it("calls the onClick of a Tabs.Tab and still selects it", async () => {
       const user = userEvent.setup();

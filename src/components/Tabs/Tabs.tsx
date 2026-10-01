@@ -2,6 +2,7 @@ import {
   Children,
   type ComponentProps,
   isValidElement,
+  type KeyboardEvent,
   type ReactElement,
   type ReactNode,
   useId,
@@ -11,7 +12,7 @@ import { Tab, type TabProps, type TabVariant } from "./Tab";
 import styles from "./Tabs.module.scss";
 
 export type TabsProps = ComponentProps<"div"> & {
-  /** Accessible name of the tab list. */
+  /** Accessible name of the tab list, e.g. "User sections". */
   "aria-label": string;
   /** Tabs visual variant. */
   variant?: TabVariant;
@@ -38,11 +39,50 @@ export function Tabs({
   const tabId = (index: number) => `${baseId}-tab-${index}`;
   const panelId = (index: number) => `${baseId}-panel-${index}`;
 
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  // Falls back to the last tab if the selected one is removed.
+  const activeIndex = Math.min(selectedIndex, tabs.length - 1);
+
+  function selectTab(index: number) {
+    setSelectedIndex(index);
+    document.getElementById(tabId(index))?.focus();
+  }
+
+  function handleKeyDown(event: KeyboardEvent<HTMLDivElement>) {
+    // Leave browser shortcuts such as Alt+Left alone.
+    if (event.altKey || event.ctrlKey || event.metaKey) return;
+
+    const last = tabs.length - 1;
+
+    switch (event.key) {
+      case "ArrowLeft":
+        selectTab(activeIndex === 0 ? last : activeIndex - 1);
+        break;
+      case "ArrowRight":
+        selectTab(activeIndex === last ? 0 : activeIndex + 1);
+        break;
+      case "Home":
+        selectTab(0);
+        break;
+      case "End":
+        selectTab(last);
+        break;
+      default:
+        return;
+    }
+
+    event.preventDefault();
+  }
 
   return (
     <div {...rootProps} id={id}>
-      <div role="tablist" aria-label={ariaLabel} data-variant={variant} className={styles.list}>
+      <div
+        role="tablist"
+        aria-label={ariaLabel}
+        data-variant={variant}
+        className={styles.list}
+        onKeyDown={handleKeyDown}
+      >
         {tabs.map((tab, index) => (
           <Tab
             {...tab.props}
@@ -52,9 +92,10 @@ export function Tabs({
             id={tabId(index)}
             aria-selected={index === activeIndex}
             aria-controls={panelId(index)}
+            tabIndex={index === activeIndex ? 0 : -1}
             onClick={(event) => {
               tab.props.onClick?.(event);
-              setActiveIndex(index);
+              selectTab(index);
             }}
           />
         ))}
