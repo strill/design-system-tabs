@@ -18,6 +18,8 @@ export type TabsProps = ComponentProps<"div"> & {
   variant?: TabVariant;
   /** `Tabs.Tab` elements. Other children are ignored. */
   children: ReactNode;
+  /** Extra CSS classes, separated by spaces. */
+  className?: string;
 };
 
 function isTab(child: ReactNode): child is ReactElement<TabProps> {
@@ -29,6 +31,7 @@ export function Tabs({
   "aria-label": ariaLabel,
   variant = "underline",
   children,
+  className,
   id,
   ...rootProps
 }: TabsProps) {
@@ -81,7 +84,7 @@ export function Tabs({
   }
 
   return (
-    <div {...rootProps} id={id}>
+    <div {...rootProps} id={id} className={className ? `${styles.tabs} ${className}` : styles.tabs}>
       <div
         role="tablist"
         aria-label={ariaLabel}

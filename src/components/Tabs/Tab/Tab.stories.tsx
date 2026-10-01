@@ -12,7 +12,12 @@ const meta = {
     "aria-selected": { control: "boolean", description: "Tab selected state. Set by `Tabs`." },
     badge: { control: "object" },
     children: { control: false },
-    className: { control: "text", description: "Extra CSS classes." },
+    variant: {
+      control: "inline-radio",
+      table: {
+        type: { summary: '"underline" | "pill"' },
+      },
+    },
   },
   render: (args) => (
     <div role="tablist" aria-label="Single tab">

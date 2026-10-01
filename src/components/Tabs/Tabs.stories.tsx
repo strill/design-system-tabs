@@ -5,11 +5,17 @@ const meta = {
   title: "Components/Tabs",
   component: Tabs,
   args: {
-    "aria-label": "Sections",
+    "aria-label": "User sections",
     children: null,
   },
   argTypes: {
     children: { control: false },
+    variant: {
+      control: "inline-radio",
+      table: {
+        type: { summary: '"underline" | "pill"' },
+      },
+    },
   },
   render: (args) => (
     <Tabs {...args}>

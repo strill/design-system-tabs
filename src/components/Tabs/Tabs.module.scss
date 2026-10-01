@@ -1,31 +1,33 @@
-@use "foundations" as ds;
+@use 'foundations' as ds;
 
-.list {
-  display: flex;
-  margin: calc(var(--ds-spacing-3xs) * -1);
-  overflow-x: auto;
-  padding: var(--ds-spacing-3xs);
-  scroll-padding-inline: var(--ds-spacing-s);
-  scrollbar-width: none;
+.tabs {
+  .list {
+    display: flex;
+    margin: calc(var(--ds-spacing-3xs) * -1);
+    overflow-x: auto;
+    padding: var(--ds-spacing-3xs);
+    scroll-padding-inline: var(--ds-spacing-s);
+    scrollbar-width: none;
 
-  &[data-variant="underline"] {
-    gap: var(--ds-spacing-l);
+    &[data-variant='underline'] {
+      gap: var(--ds-spacing-l);
 
-    @include ds.media-above-mobile {
-      gap: var(--ds-spacing-xl);
+      @include ds.media-above-mobile {
+        gap: var(--ds-spacing-xl);
+      }
+    }
+
+    &[data-variant='pill'] {
+      gap: var(--ds-spacing-2xs);
+
+      @include ds.media-above-mobile {
+        gap: var(--ds-spacing-xs);
+      }
     }
   }
 
-  &[data-variant="pill"] {
-    gap: var(--ds-spacing-2xs);
-
-    @include ds.media-above-mobile {
-      gap: var(--ds-spacing-xs);
-    }
+  .panel {
+    margin-top: var(--ds-spacing-xl);
+    @include ds.focus-ring;
   }
-}
-
-.panel {
-  margin-top: var(--ds-spacing-xl);
-  @include ds.focus-ring;
 }

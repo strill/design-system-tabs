@@ -4,17 +4,15 @@ import styles from "./Badge.module.scss";
 export type BadgeVariant = "neutral" | "positive" | "negative";
 
 export type BadgeProps = ComponentProps<"span"> & {
-  /** Label of the badge. */
+  /** Badge label. */
   children: string;
-  /** Visual tone of the badge. */
-  variant?: BadgeVariant;
-  /** Extra classes for the badge. If multiple, separate them with spaces. */
+  /** Extra CSS classes, separated by spaces. */
   className?: string;
+  /** Badge color variant. */
+  variant?: BadgeVariant;
 };
 
-/** Short text label that adds extra information, such as a status.
- * Badge information should not be conveyed by color alone: use appropriate text.
- */
+/** Short label for extra information, such as a status. */
 export function Badge({ variant = "neutral", className, ...props }: BadgeProps) {
   return (
     <span

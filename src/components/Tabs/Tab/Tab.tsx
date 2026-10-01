@@ -7,12 +7,14 @@ export type TabVariant = "underline" | "pill";
 export type TabProps = ComponentProps<"button"> & {
   /** Tab label. */
   label: string;
-  /** Badge after the label. */
+  /** Badge after the tab label. */
   badge?: { label: string; variant?: BadgeVariant };
   /** Panel content, rendered by `Tabs`. */
   children?: ReactNode;
-  /** Tab visual variant. Overridden by `Tabs`. */
+  /** Tab visual variant. Set by `Tabs`. */
   variant?: TabVariant;
+  /** Extra CSS classes, separated by spaces. */
+  className?: string;
 };
 
 /** Button that selects a panel. Use inside `Tabs`. */
