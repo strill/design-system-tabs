@@ -1,5 +1,11 @@
 @use 'foundations' as ds;
 
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
 .tabs {
   .list {
     display: flex;
@@ -29,5 +35,8 @@
   .panel {
     margin-top: var(--ds-spacing-xl);
     @include ds.focus-ring;
+    @include ds.motion-safe {
+      animation: fade-in var(--ds-motion-duration-fast) var(--ds-motion-easing);
+    }
   }
 }

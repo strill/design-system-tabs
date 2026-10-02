@@ -71,9 +71,10 @@
       height: var(--ds-border-width-l);
       inset-inline: 0;
       position: absolute;
+      transform: scaleX(0);
       @include ds.motion-safe {
         transition-duration: var(--ds-motion-duration-fast);
-        transition-property: background-color;
+        transition-property: background-color, transform;
         transition-timing-function: var(--ds-motion-easing);
       }
     }
@@ -81,10 +82,12 @@
     &:hover::after,
     &:focus-visible::after {
       background-color: var(--ds-color-outline-hover);
+      transform: scaleX(1);
     }
 
     &[aria-selected="true"]::after {
       background-color: var(--ds-color-inverse);
+      transform: scaleX(1);
     }
   }
 }
